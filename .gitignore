@@ -1,0 +1,76 @@
+# PokedexAPI .gitignore — .NET / Visual Studio
+
+## Build output
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ll]og/
+[Ll]ogs/
+artifacts/
+publish/
+*.efbundle
+
+## Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+launchSettings.local.json
+
+## Rider / VS Code
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+
+## NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+project.lock.json
+project.fragment.lock.json
+
+## Tests and coverage (Chapter 4)
+[Tt]est[Rr]esult*/
+*.trx
+coverage/
+coverage*.json
+coverage*.xml
+coverage*.info
+TestResults/
+
+## Secrets and local config (Chapter 5 onward) — never commit these
+.env
+.env.*
+!.env.example
+appsettings.*.local.json
+*.pfx
+*.p12
+secrets.json
+
+## Local data (Docker volumes, SQLite, dumps)
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+pgdata/
+redis-data/
+
+## Load test and profiling output (Chapter 8)
+*.diagsession
+*.nettrace
+k6-results/
+
+## OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
