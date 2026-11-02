@@ -1,0 +1,88 @@
+@base = http://localhost:5161
+
+### All Pokémon (list projection — one SQL query, no N+1)
+GET {{base}}/pokemon
+
+### One Pokémon by id
+GET {{base}}/pokemon/25
+
+### One Pokémon by name
+GET {{base}}/pokemon/by-name/pikachu
+
+### Pokémon of a type
+GET {{base}}/types/electric/pokemon
+
+### Full evolution chain (Eevee)
+GET {{base}}/pokemon/133/evolutions
+
+### Full evolution chain (Ivysaur — returns the Bulbasaur family)
+GET {{base}}/pokemon/2/evolutions
+
+### Create (use a national number above 151)
+POST {{base}}/pokemon
+Content-Type: application/json
+
+{
+  "nationalNumber": 152,
+  "name": "chikorita",
+  "height": 9,
+  "weight": 64,
+  "baseExperience": 64,
+  "types": [{ "name": "grass", "slot": 1 }],
+  "stats": {
+    "hp": 45,
+    "attack": 49,
+    "defense": 65,
+    "specialAttack": 49,
+    "specialDefense": 65,
+    "speed": 45
+  },
+  "abilities": [{ "name": "overgrow", "isHidden": false }]
+}
+
+### Duplicate name/number should be 409
+POST {{base}}/pokemon
+Content-Type: application/json
+
+{
+  "nationalNumber": 25,
+  "name": "pikachu",
+  "height": 4,
+  "weight": 60,
+  "baseExperience": 112,
+  "types": [{ "name": "electric", "slot": 1 }],
+  "stats": {
+    "hp": 35,
+    "attack": 55,
+    "defense": 40,
+    "specialAttack": 50,
+    "specialDefense": 50,
+    "speed": 90
+  },
+  "abilities": [{ "name": "static", "isHidden": false }]
+}
+
+### Update
+PUT {{base}}/pokemon/152
+Content-Type: application/json
+
+{
+  "nationalNumber": 152,
+  "name": "chikorita",
+  "height": 9,
+  "weight": 64,
+  "baseExperience": 64,
+  "types": [{ "name": "grass", "slot": 1 }],
+  "stats": {
+    "hp": 45,
+    "attack": 49,
+    "defense": 65,
+    "specialAttack": 49,
+    "specialDefense": 65,
+    "speed": 50
+  },
+  "abilities": [{ "name": "overgrow", "isHidden": false }]
+}
+
+### Delete
+DELETE {{base}}/pokemon/152
